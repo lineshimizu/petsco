@@ -370,6 +370,9 @@
                 border-top-right-radius: 15px;
                 border-bottom-right-radius: 15px;
             }
+            .slide-mobile {
+                display: none;
+            }
             @media (max-width: 768px) {
                 .categoria-grupo {
                     width: 95vw;
@@ -406,6 +409,15 @@
                 }
                 #slide4:checked ~.slides {
                     transform: translateX(-300vw);
+                }
+                
+                .slide-desktop {
+                    display: none;
+                }
+                .slide-mobile {
+                    display: block;
+                    width: 100%;
+                    height: auto;
                 }
 
             }
@@ -452,13 +464,15 @@
             <div class="slides">
                 <div class="slide">
                     <a href="banhoetosa.html">
-                        <img src="slides/Carousel-Agendamento.png" alt="slide-banho-tosa">
+                        <img src="slides/Carousel-Agendamento.png" alt="slide-banho-tosa" class="slide-desktop">
+                        <img src="slides/Carousel-Agendamento-quadrado.png" class="slide-mobile">
                     </a>
                 </div>
 
                 <div class="slide">
                     <a href="racao.html">
-                        <img src="slides/racao.png" alt="slide-racao">
+                        <img src="slides/racao.png" alt="slide-racao" class="slide-desktop">
+                        <img src="slides/racao-quadrado.png" class="slide-mobile">
                     </a>
                 </div>
             
@@ -470,7 +484,8 @@
             
                 <div class="slide">
                     <a href="fale_conosco.html">
-                        <img src="slides/duvida.png" alt="slide-fale-conosco">
+                        <img src="slides/duvida.png" alt="slide-fale-conosco" class="slide-desktop">
+                        <img src="slides/duvida-quadrado.png" class="slide-mobile">
                     </a>
                 </div>
             </div>
