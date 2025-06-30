@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Fale Conosco</title>
+        <link rel="icon" href="icone/icone-principal.png">
+
+
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            body {
+                font-family: "Roboto";
+                background-color: rgb(250, 245, 238);
+            }
+            @font-face {
+                font-family: "Roboto";
+                src: url("fonte/Roboto-Light.ttf");
+            }
+
+            @font-face {
+                font-family: "Tommy";
+                src: url("fonte/Tommy-Soft-Bold.otf");
+            }
+
+            html {
+                overflow-x: hidden;
+            }
+            
+            nav {
+                background-color: rgb(6, 181, 181);
+                display: flex;
+                width: 100vw;
+                height: 75px;
+            }
+            .img_logo img{
+                width: 80px;
+                height: 60px;
+                margin-top: 8px;
+                margin-left: 50px;
+            }
+            .navbar {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                justify-content: end;
+                padding-right: 15px;
+            }
+            .nav-links {
+                color: white;
+                text-decoration: none;
+                font-weight: bold;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .nav-links:hover {
+                background-color: rgb(9, 225, 225, 0.43);
+                border-radius: 10px;
+            }
+
+            /* Início Menu Sanduíche*/
+            .menu-icon {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+                margin-right: 20px;
+            }
+            .menu-icon div {
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                margin: 4px 0;
+                transition: 0.4s;
+                border-radius: 10px;
+            }
+
+            /* INICIO Tamanho da tela para Menu Sanduiche */
+            @media screen and (max-width: 768px) {
+                .navbar {
+                    display: none;
+                    align-items: normal;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: rgba(62, 163, 163, 0.916);
+                    position: absolute;
+                    top: 74px;
+                    z-index: 999;
+                }
+                .navbar a {
+                    border-bottom: 1px solid gray;
+                }
+                .navbar a:hover {
+                    background-color: rgba(85, 215, 215, 0.916);
+                    border-radius: 0%;
+                }
+                .menu-icon {
+                    display: flex;
+                    margin-left: auto;
+                    padding-right: 15px;
+                }
+                nav {
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            }
+            /*FIM Tamanho da tela para Menu Sanduiche*/
+
+            /*INICIO Formulario*/
+            .formulario-titulo {
+                font-family: "Tommy";
+                color: orange;
+                display: block;
+                text-align: center;
+                margin-top: 20px;
+                font-size: larger;
+                padding: 15px;
+                /* border: 1px solid red; */
+                margin-bottom: 15px;
+            }
+            .formulario-titulo h4 {
+                margin-top: 5px;
+            }
+            .formulario {
+                /* border: 1px solid blue; */
+                width: 500px;
+                display: flex;
+                margin: auto;
+                background-color: white;
+                padding: 15px;
+                border-radius: 15px;
+            }
+            .formulario-conteudo {
+                /* border: 1px solid pink; */
+                width: 500px;
+                text-align: center;
+
+            }
+            .formulario-conteudo input {
+                height: 30px;
+                border-color: rgba(122, 118, 119, 0.219);
+                border-radius: 5px;
+                margin: 5px;
+
+            }
+            .fomrulario-botao {
+                color: white;
+                background-color: orange;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-bottom: 10px;
+                padding-top: 7px;
+            }
+            .fomrulario-botao:hover {
+                color: white;
+                background-color: rgb(255, 145, 0);
+                box-shadow: 3px 5px 10px rgba(0, 0, 0, .2);
+                
+            }
+            .fomrulario-botao:active {
+                position: relative;
+                top: 5px;
+                box-shadow: none;
+            }
+            
+            
+            /*FIM Formulairo*/
+
+            /*INICIO FOOTER*/
+            footer {
+                background-color: rgb(255, 146, 1);
+                width: 100%;
+                height: auto;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .footer-colunas {
+                display: inline-block;
+                vertical-align: top;
+                padding: 30px;
+
+            }
+            .footer-li {
+                display: block;
+                line-height: 40px;
+                text-align: left;
+            }
+            .footer-linha-vertical {
+                display: inline-block;
+                height: 100px;
+                width: 20px;
+                border-right: 1px solid rgb(232, 186, 127);
+                margin-top: 40px;
+            }
+            .footer-links {
+                color: white;
+                text-decoration: none;
+                padding: 10px;
+                font-size: small;
+                transition: 0.5s;
+            }
+            .footer-links:hover {
+                color: rgb(142, 82, 3);
+            }
+            /*FIM FOOTER*/
+        </style>
+    </head>
+    <body>
+        <!--INICIO Nav-->
+        <header>
+            <nav>
+                <div class="img_logo">
+                    <a href="index.html"><img src="icone/icone-pets-co.png"></a>
+                    
+                </div>
+
+                <!--Menu Sanduíche-->
+                <div class="menu-icon" onclick="MostraEscondeMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <!--Fim Menu Sanduíche-->
+
+                <div class="navbar" id="navLinks">
+                    <a href="index.html" class="nav-links">Home</a>
+                    <a href="cadastro.html" class="nav-links">Cadastre-se</a>
+                    <a href="fale_conosco.html" class="nav-links">Fale Conosco</a>
+                    <a href="nossa_historia.html" class="nav-links">Nossa história</a>
+                </div>
+            </nav>
+        </header>
+        <!--FIM Nav-->
+
+        <!--INICIO Formulario-->
+        <div class="formulario-titulo">
+            <h2>FALE CONOSCO</h2>
+            <h4>Enviar uma solicitação</h4>
+        </div>
+
+        <div class="formulario">
+            <form method="" action="" class="formulario-conteudo">
+                <input type="text" name="nome" id="idnome" placeholder="  Nome" size="30">
+                <input type="text" name="sobrenome" id="sobrenome" placeholder="  Sobrenome" size="30">
+                <br>
+                <input type="text" name="nome" id="idemail" placeholder="  E-mail" size="30">
+                <input type="text" name="cpf" id="idcpf" placeholder="  CPF" size="30">
+                <br>
+                <label for="idcategoria">Sobre o que você quer falar?</label>
+                <select name="categoria" id="idcategoria">
+                    <option value=""></option>
+                    <option value="pedido">Pedido</option>
+                    <option value="cadastro">Cadastro</option>
+                    <option value="rastreio">Rastreio</option>
+                    <option value="forma-de-pagamento">Forma de Pagamento</option>
+                    <option value="cancelar-pedido">Cancelar Pedido</option>
+                    <option value="reembolso">Reembolso</option>
+                    <option value="produtos">Produtos</option>
+                    <option value="elogio">Elogio</option>
+                </select>
+                <br>
+                <input type="text" name="assunto" id="idassunto" placeholder="  Assunto" size="67">
+                <br><br>
+                <textarea rows="40" cols="63" >Descreva aqui como podemos te ajudar. Caso tenha feito uma compra on-line, digite também o número do pedido.
+                </textarea>
+                <br><br>
+                <input type="submit" value="ENVIAR" class="fomrulario-botao">
+                    
+
+            </form>
+
+        </div>
+        <!--FIM Firmulario-->
+
+        <!--INICIO Footer-->
+        <footer>
+            <div class="footer-colunas">
+                <ul>
+                    <li class="footer-li"><a href="fale_conosco.html" class="footer-links">Fale Conosco</a></li>
+                    <li class="footer-li"><a href="cadastro.html" class="footer-links">Cadastro</a></li>
+                    <li class="footer-li"><a href="nossa_historia.html" class="footer-links">Nossa História</a></li>
+                </ul>
+            </div>
+            <div class="footer-linha-vertical"></div>
+            <div class="footer-colunas">
+                <ul>
+                    <li class="footer-li"><a href="racao.html" class="footer-links">Rações</a></li>
+                    <li class="footer-li"><a href="banhoetosa.html" class="footer-links">Agendamento</a></li>
+                </ul>
+            </div>
+
+        </footer>
+        <!--FIM Footer-->
+        
+        <script>
+            function MostraEscondeMenu() {
+                var nav = document.getElementById("navLinks");
+                if (nav.style.display === "flex") {
+                    nav.style.display = "none";
+                } else {
+                    nav.style.display = "flex"
+                }
+            }
+        </script>
+    </body>
+</html>

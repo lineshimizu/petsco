@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Projeto Pet Shop</title>
+        <link rel="icon" href="icone/icone-principal.png">
+
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            body {
+                font-family: "Roboto";
+                background-color: rgb(250, 245, 238);
+            }
+            @font-face {
+                font-family: "Roboto";
+                src: url("fonte/Roboto-Light.ttf");
+            }
+            @font-face {
+                font-family: "Tommy_Regular";
+                src: url("fonte/Tommy-Soft-Regular.otf");
+            }
+
+            html {
+                overflow-x: hidden;
+            }
+            
+            nav {
+                background-color: rgb(6, 181, 181);
+                display: flex;
+                width: 100vw;
+                height: 75px;   
+            }
+            .img_logo img{
+                width: 80px;
+                height: 60px;
+                margin-top: 8px;
+                margin-left: 50px;
+            }
+            .navbar {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                justify-content: end;
+                padding-right: 15px;
+            }
+            .nav-links {
+                color: white;
+                text-decoration: none;
+                font-weight: bold;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .nav-links:hover {
+                background-color: rgba(9, 225, 225, 0.43);
+                border-radius: 10px;
+            }
+
+            /* Início Menu Sanduíche*/
+            .menu-icon {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+                margin-right: 20px;
+            }
+            .menu-icon div {
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                margin: 4px 0;
+                transition: 0.4s;
+                border-radius: 10px;
+            }
+
+            /* INICIO Tamanho da tela para Menu Sanduiche */
+            @media screen and (max-width: 768px) {
+                .navbar {
+                    display: none;
+                    align-items: normal;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: rgba(62, 163, 163, 0.916);
+                    position: absolute;
+                    top: 74px;
+                    z-index: 999;
+                }
+                .navbar a {
+                    border-bottom: 1px solid gray;
+                }
+                .navbar a:hover {
+                    background-color: rgba(85, 215, 215, 0.916);
+                    border-radius: 0%;
+                }
+                .menu-icon {
+                    display: flex;
+                    margin-left: auto;
+                    padding-right: 15px;
+                }
+                nav {
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            
+            }
+            /*FIM Tamanho da tela para Menu Sanduiche*/
+
+            /*INICIO Carousel*/
+
+            .carousel {
+                width: 70vw;
+                overflow: hidden;
+                position: relative;
+                margin: auto;
+            }
+            .slides {
+                width: 70vw;
+                display: flex;
+                transition: transform 0.9s ease;
+            }
+            .slide {
+                width: 70vw;
+                height: 400px;
+                flex-shrink: 0;
+            }
+            .slide img {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                margin-left: 0;
+                
+            }
+            input[name="carousel"] {
+                display: none;
+            }
+            #slide1:checked ~.slides {
+                transform: translateX(0vw);
+            }
+            #slide2:checked ~.slides {
+                transform: translateX(-70vw);
+            }
+            #slide3:checked ~.slides {
+                transform: translateX(-140vw);
+            }
+            #slide4:checked ~.slides {
+                transform: translateX(-210vw);
+            }
+            .navegacao {
+                position: absolute;
+                bottom: 20px;
+                width: 100%;
+                text-align: center;
+            }
+            .navegacao label {
+                display: inline-block;
+                width: 45px;
+                height: 4px;
+                border-radius: 10px;
+                background-color: rgba(245, 221, 225, 0.527);
+                margin: 0 7px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            
+            .navegacao label:hover {
+                background-color: rgb(163, 154, 154);
+            }
+            #slide1:checked ~.navegacao label:nth-child(1),
+            #slide2:checked ~.navegacao label:nth-child(2),
+            #slide3:checked ~.navegacao label:nth-child(3),
+            #slide4:checked ~.navegacao label:nth-child(4) {
+                background-color: rgba(66, 137, 230, 0.733);
+            }
+
+            /*FIM Carousel */
+
+            
+            /*INICIO Container*/
+            .container {
+                width: 80vw;
+                margin-left: auto;
+                margin-right: auto;
+                padding-bottom: 10px;
+                text-align: center;
+                margin-top: 25px;
+                /* border: solid 1px red; */
+
+            }
+            .container-titulo {
+                font-family: "Tommy_Regular";
+                margin-top: 15px;
+                text-align: left;
+            }
+            .content-card-produto {
+                text-align: center;
+            }
+            .card-produto {
+                width: 200px;
+                height: 315px;
+                background-color: white;
+                display: inline-block;
+                border-top-left-radius: 25px;
+                border-top-right-radius: 25px;
+                box-shadow: 3px 5px 10px rgba(0, 0, 0, .2);
+                margin: 10px;
+                margin-top: 20px;
+                transition: all 0.9s;
+
+            }
+            .card-produto img {
+                width: 200px;
+                height: 250px;
+                border-top-right-radius: 25px;
+                border-top-left-radius: 25px;
+            }
+            .card-produto:hover {
+                box-shadow: 4px 8px 20px rgba(0, 0, 0, .5);
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+            .body-card-produto h3 {
+                font-family: "Roboto";
+                font-size: 15px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                max-width: 25ch;
+                margin: 5px;
+            }
+            .body-card-produto span {
+                font-size: 14px;
+                color: gray;
+                margin: 5px;
+                text-decoration: line-through;
+            }
+            .body-card-produto label {
+                font-size: 16px;
+                color: rgb(252, 128, 46);
+                font-weight: bold;
+                margin: 5px;
+                cursor: pointer;
+            }
+            .body-card-produto button {
+                width: 100%;
+                background-color: rgb(6, 181, 181);
+                text-align: center;
+                color: white;
+                font-weight: 700;
+                border: none;
+                box-shadow: 0px 5px 0px rgb(6, 160, 160);
+                padding-top: 5px;
+                padding-bottom: 4px;
+            }
+            .body-card-produto button:hover {
+                cursor: pointer;
+                background-color: rgb(8, 167, 167);
+                box-shadow: 0px 5px 0px rgb(7, 142, 142);
+            }
+            .body-card-produto button:active {
+                position: relative;
+                top: 5px;
+                box-shadow: none;
+            }
+
+            /*FIM Container*/
+
+            /*INICIO FOOTER*/
+            footer {
+                background-color: rgb(255, 146, 1);
+                width: 100%;
+                height: auto;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .footer-colunas {
+                display: inline-block;
+                vertical-align: top;
+                padding: 30px;
+
+            }
+            .footer-li {
+                display: block;
+                line-height: 40px;
+                text-align: left;
+            }
+            .footer-linha-vertical {
+                display: inline-block;
+                height: 100px;
+                width: 20px;
+                border-right: 1px solid rgb(232, 186, 127);
+                margin-top: 40px;
+            }
+            .footer-links {
+                color: white;
+                text-decoration: none;
+                padding: 10px;
+                font-size: small;
+                transition: 0.5s;
+            }
+            .footer-links:hover {
+                color: rgb(142, 82, 3);
+            }
+            /*FIM FOOTER*/
+
+            /*INICIO Categorias*/
+
+            .categorias {
+                width: 100vw;
+                text-align: center;
+                margin-top: 20px;
+                padding: 20px 0;
+                            
+            }
+            .categoria-grupo {
+                width: 70vw;
+                max-width: 1200px;
+                min-width: 600px;
+                display: flex;
+                margin: auto;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+            }
+            .categoria-anuncio {
+                width: fit-content;
+                max-width: 250px;
+                margin: 5px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                border-radius: 25px;
+            }    
+            .categoria-anuncio a {
+                text-decoration: none;
+            }
+            .categoria-anuncio:hover {
+                box-shadow: 4px 8px 20px rgba(0, 0, 0, .5);
+                cursor: pointer;
+                /* transition: all 0.3s; */
+                transform: scale(1.05);
+            }
+            .categoria-info {
+                display: flex;
+                align-items: center;
+                border-radius: 15px;
+                overflow: hidden;
+                background-color: rgba(243, 235, 201, 0.934);
+                height: 100%;
+            }
+            .categoria-icone {
+                background-color: rgb(255, 207, 0);
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                height: 100%;
+            }
+            .categoria-icone img {
+                width: 28px;
+                height: 28px;
+            }
+            .categoria-texto {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+                color: #333;
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+            @media (max-width: 768px) {
+                .categoria-grupo {
+                    width: 95vw;
+                    min-width: unset;
+                }
+                
+                .categoria-texto {
+                    display: none;
+                }
+                .categoria-info {
+                    border-radius: 50px;
+                }
+                .categoria-icone {
+                    border-radius: 50px;
+                    padding: 12px;
+                }
+                .carousel {
+                    width: 100%;
+                }
+                .slides {
+                width: 100vw; 
+                }
+                .slide {
+                    width: 100%;
+                }
+                #slide1:checked ~.slides {
+                    transform: translateX(0vw);
+                }
+                #slide2:checked ~.slides {
+                    transform: translateX(-100vw);
+                }
+                #slide3:checked ~.slides {
+                    transform: translateX(-200vw);
+                }
+                #slide4:checked ~.slides {
+                    transform: translateX(-300vw);
+                }
+
+            }
+            /*FIM Categoria*/
+            
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="img_logo">
+                    <a href="index.html"><img src="icone/icone-pets-co.png"></a>
+                    
+                </div>
+
+                <!--Menu Sanduíche-->
+                <div class="menu-icon" onclick="MostraEscondeMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <!--Fim Menu Sanduíche-->
+
+                <div class="navbar" id="navLinks">
+                    <a href="index.html" class="nav-links">Home</a>
+                    <a href="cadastro.html" class="nav-links">Cadastre-se</a>
+                    <a href="fale_conosco.html" class="nav-links">Fale Conosco</a>
+                    <a href="nossa_historia.html" class="nav-links">Nossa história</a>
+                </div>
+            </nav>
+        </header>
+
+        <!--INICIO Carousel-->
+
+        <!--Botões para controlar-->
+        <div class="carousel"> <!--INICIO Div Pai-->
+            <input type="radio" name="carousel" id="slide1" checked>
+            <input type="radio" name="carousel" id="slide2">
+            <input type="radio" name="carousel" id="slide3">
+            <input type="radio" name="carousel" id="slide4">
+
+            <!--Slides Carousel-->
+            <div class="slides">
+                <div class="slide">
+                    <a href="banhoetosa.html">
+                        <img src="slides/Carousel-Agendamento.png" alt="slide-banho-tosa">
+                    </a>
+                </div>
+
+                <div class="slide">
+                    <a href="racao.html">
+                        <img src="slides/racao.png" alt="slide-racao">
+                    </a>
+                </div>
+            
+                <div class="slide">
+                    <a href="cadastro.html">
+                        <img src="slides/cadastro.png" alt="slide-cadastro">
+                    </a>
+                </div>
+            
+                <div class="slide">
+                    <a href="fale_conosco.html">
+                        <img src="slides/duvida.png" alt="slide-fale-conosco">
+                    </a>
+                </div>
+            </div>
+
+            <!--NAVEGAÇÃO-->
+            <div class="navegacao">
+                <label for="slide1"></label>
+                <label for="slide2"></label>
+                <label for="slide3"></label>
+                <label for="slide4"></label>
+            </div>
+        </div> <!--FIM Div Pai-->
+
+        <!--FIM Carousel-->
+
+        <!--INICIO Categorias-->
+        <div class="categorias">
+            <div class="categoria-grupo">
+                <div class="categoria-anuncio">
+                    <a href="banhoetosa.html">
+                        <div class="categoria-info">
+                            <div class="categoria-icone">
+                                <img src="categorias/agendamento.svg" alt="ícone agendamento">
+                            </div>
+                            <span class="categoria-texto">Banho e Tosa</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="categoria-anuncio">
+                    <a href="cadastro.html">
+                        <div class="categoria-info">
+                            <div class="categoria-icone">
+                                <img src="categorias/cadastro.svg" alt="ícone cadastro">
+                            </div>
+                            <span class="categoria-texto">Pet Lovers</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="categoria-anuncio">
+                    <a href="nossa_historia.html">
+                        <div class="categoria-info">
+                            <div class="categoria-icone">
+                                <img src="categorias/nossa-historia.svg" alt="ícone historia">
+                            </div>
+                            <span class="categoria-texto">Nossa História</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="categoria-anuncio">
+                    <a href="banhoetosa.html">
+                        <div class="categoria-info">
+                            <div class="categoria-icone">
+                                <img src="categorias/vet.svg" alt="ícone veterinario">
+                            </div>
+                            <span class="categoria-texto">Veterinário</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="categoria-anuncio">
+                    <a href="racao.html">
+                        <div class="categoria-info">
+                            <div class="categoria-icone">
+                                <img src="categorias/racao.svg" alt="ícone racao">
+                            </div>
+                            <span class="categoria-texto">Rações</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--FIM Categorias-->
+
+        <!--INICIO Container-->
+
+        <div class="container">
+            <section>
+                <h3 class="container-titulo">Descontos Imperdíveis</h3>
+            </section>
+            <section>
+                <div class="content-cards-produto">
+                    <div class="card-produto">
+                        <img src="cards/brinquedo1.jpg">
+                        <div class="body-card-produto">
+                            <h3>Brinquedo fantoche</h3>
+                            <p>
+                                <span>R$60,00</span>
+                                <label>R$30,00</label>
+                            </p>
+                            <button type="button">Comprar</button>
+                        </div>
+                    </div>
+
+                    <div class="card-produto">
+                        <img src="/cards/brinquedo2.jpg">
+                        <div class="body-card-produto">
+                            <h3>Bolinha verde</h3>
+                            <p>
+                                <span>R$50,00</span>
+                                <label>R$25,00</label>
+                            </p>
+                            <button type="button">Comprar</button>
+                        </div>
+                    </div>
+
+                    <div class="card-produto">
+                        <img src="/cards/brinquedo3.jpg">
+                        <div class="body-card-produto">
+                            <h3>Bolinha vermelha</h3>
+                            <p>
+                                <span>R$60,00</span>
+                                <label>R$30,00</label>
+                            </p>
+                            <button type="button">Comprar</button>
+                        </div>
+                    </div>
+
+                    <div class="card-produto">
+                        <img src="/cards/brinquedo4.jpg">
+                        <div class="body-card-produto">
+                            <h3>Pelúcia</h3>
+                            <p>
+                                <span>R$120,00</span>
+                                <label>R$60,00</label>
+                            </p>
+                            <button type="button">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--FIM Container-->
+
+        <!--INICIO Footer-->
+        <footer>
+            <div class="footer-colunas">
+                <ul>
+                    <li class="footer-li"><a href="fale_conosco.html" class="footer-links">Fale Conosco</a></li>
+                    <li class="footer-li"><a href="cadastro.html" class="footer-links">Cadastro</a></li>
+                    <li class="footer-li"><a href="nossa_historia.html" class="footer-links">Nossa História</a></li>
+                </ul>
+            </div>
+            <div class="footer-linha-vertical"></div>
+            <div class="footer-colunas">
+                <ul>
+                    <li class="footer-li"><a href="racao.html" class="footer-links">Rações</a></li>
+                    <li class="footer-li"><a href="banhoetosa.html" class="footer-links">Agendamento</a></li>
+                </ul>
+            </div>
+
+        </footer>
+        <!--FIM Footer-->
+
+
+
+
+
+        <script>
+            function MostraEscondeMenu() {
+                var nav = document.getElementById("navLinks");
+                if (nav.style.display === "flex") {
+                    nav.style.display = "none";
+                } else {
+                    nav.style.display = "flex"
+                }
+            }
+        </script>
+        
+    </body>
+</html>

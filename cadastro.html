@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cadastro</title>
+        <link rel="icon" href="icone/icone-principal.png">
+
+
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            body {
+                font-family: "Roboto";
+                background-color: rgb(250, 245, 238);
+            }
+            @font-face {
+                font-family: "Roboto";
+                src: url("fonte/Roboto-Light.ttf");
+            }
+            @font-face {
+                font-family: "Tommy";
+                src: url("fonte/Tommy-Soft-Bold.otf");
+            }
+
+            /* html {
+                overflow-x: hidden;
+            } */
+            
+            nav {
+                background-color: rgb(6, 181, 181);
+                display: flex;
+                width: 100vw;
+                height: 75px;
+            }
+            .img_logo img{
+                width: 80px;
+                height: 60px;
+                margin-top: 8px;
+                margin-left: 50px;
+            }
+            .navbar {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                justify-content: end;
+                padding-right: 25px;
+            }
+            .navbar img{
+                margin-right: 10px;
+            }
+            .navbar h3 {
+                font-size: 16px;
+            }
+            .formulario {
+                /* border: 1px solid blue; */
+                margin: auto;
+                margin-top: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                max-width: 100%;
+                padding: 20px;
+                
+            }
+            .formulario h3 {
+                text-align: left;
+                font-family: "Tommy";
+                color: orange;
+            }
+            .formulario p {
+                text-align: left;
+            }
+            
+            .formulario-conteudo {
+                /* border: 1px solid red; */
+                margin-top: 15px;
+                min-width: 300px;
+                background-color: white;
+                text-align: left;
+                border-radius: 15px;
+            }
+            .formulario-conteudo fieldset {
+            
+                border-radius: 15px;
+                padding: 30px;
+                border: none;
+            }
+            .formulario-conteudo label {
+                font-size: 13px;
+                font-weight: bold;
+            }
+            .formulario-conteudo input {
+                border-radius: 5px;
+                height: 30px;
+                border-color: rgba(122, 118, 119, 0.219);
+                margin-bottom: 6px;
+                font-size: 13px;
+                width: 100% ;
+            }
+            .formulario-botao {
+                color: white;
+                background-color: rgb(66, 137, 230);
+                margin-top: 10px;
+                padding-bottom: 10px;
+                padding-top: 5px;
+                padding-left: 10px;
+                padding-right: 10px;
+                cursor: pointer;
+                font-weight: bold;
+
+            }
+            .formulario-botao:hover {
+                background-color: rgb(43, 126, 235);
+            }
+            .formulario-imagem {
+                /* border: 1px solid pink; */
+                margin-left: 100px;
+            }
+            .formulario-imagem img {
+                width: 300px;
+                
+            }
+            @media (max-width: 769px) {
+                .formulario {
+                    flex-direction: column;
+                    align-items: stretch;
+                    padding: 10px;
+                }
+                .formulario-imagem {
+                    display: none;
+                }
+                .formulario-conteudo {
+                    width: 100%;
+                    min-width: 280px;
+                }
+            }
+            
+            
+        </style>
+    </head>
+    <body>
+        <!--INICIO Header-->
+        <header>
+            <nav>
+                <div class="img_logo">
+                    <a href="index.html"><img src="icone/icone-pets-co.png"></a>
+                    
+                </div>
+
+
+                <div class="navbar">
+                    <img src="icone cadeado/icone_cadeado.svg">
+                    <h3>Ambiente Seguro</h3>
+                </div>
+            </nav>
+        </header>
+        <!--FIM Header-->
+
+        <!--INICIO Formulário-->
+        <div class="formulario">
+            <div>
+                <h3>Crie sua conta</h3>
+                <p>Faça o seu cadastro e aproveite as ofertas exclusivas Pets Lovers!</p>
+                <form method="" action="" class="formulario-conteudo">
+                    <fieldset>
+                        <label for="idnome">Nome</label>
+                        <br>
+                        <input type="text" name="nome" id="idnome" placeholder="  Digite seu nome completo" size="55">
+                        <br>
+                        <label for="idcpf">CPF</label>
+                        <br>
+                        <input type="text" name="cpf" id="idcpf" placeholder="  Digite seu CPF" size="25">
+                        <br>
+                        <label for="idnascimento">Data de nascimento</label>
+                        <br>
+                        <input type="date" name="nascimento" id="idnascimento">
+                        <br>
+                        <label for="idcelular">Celular</label>
+                        <br>
+                        <input type="text" name="celular" id="idcelular" placeholder="  DDD + celular">
+                        <br>
+                        <label for="idendereco">Endereço</label>
+                        <br>
+                        <input type="text" name="endereco" id="idendereco" placeholder="  Endereço Completo">
+                        <br>
+                        <label for="idnumero">Número</label>
+                        <br>
+                        <input type="text" name="numero" id="idnumero" placeholder="  Número">
+                        <br>
+                        <label for="idcomplemento">Complemento</label>
+                        <br>
+                        <input type="text" name="Complemento" id="idcomplemento" placeholder="  Complemento">
+                        <br>
+                        <label for="idemail">E-mail</label>
+                        <br>
+                        <input type="text" name="email" id="idemail" placeholder="  E-mail">
+                        <br>
+                        <label for="idsenha1">Senha</label>
+                        <br>
+                        <input type="text" name="senha1" id="idsenha1" placeholder="  Crie uma senha">
+                        <br>
+                        <label for="idsenha2">Confirme sua senha</label>
+                        <br>
+                        <input type="text" name="senha2" id="idsenha2" placeholder="  Confirme a sua senha">
+                        <br>
+                        <input type="submit" value="Criar Conta" class="formulario-botao">
+
+                    </fieldset>
+                </form>
+
+            </div>
+
+            <div class="formulario-imagem">
+                <img src="/formulario/formulario-imagem.png">
+            </div>
+        </div>
+
+    </body>
+</html>

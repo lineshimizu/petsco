@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Agendamento</title>
+        <link rel="icon" href="icone/icone-principal.png">
+
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            body {
+                font-family: "Roboto";
+                background-color: rgb(250, 245, 238);
+            }
+            @font-face {
+                font-family: "Roboto";
+                src: url("fonte/Roboto-Light.ttf");
+            }
+            @font-face {
+                font-family: "Tommy";
+                src: url("fonte/Tommy-Soft-Bold.otf");
+            }
+
+            html {
+                overflow-x: hidden;
+            }
+            
+            nav {
+                background-color: rgb(6, 181, 181);
+                display: flex;
+                width: 100vw;
+                height: 75px;
+            }
+            .img_logo img{
+                width: 80px;
+                height: 60px;
+                margin-top: 8px;
+                margin-left: 50px;
+            }
+            .navbar {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                justify-content: end;
+                padding-right: 15px;
+            }
+            .nav-links {
+                color: white;
+                text-decoration: none;
+                font-weight: bold;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .nav-links:hover {
+                background-color: rgb(9, 225, 225, 0.43);
+                border-radius: 10px;
+            }
+
+            /* Início Menu Sanduíche*/
+            .menu-icon {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+                margin-right: 20px;
+            }
+            .menu-icon div {
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                margin: 4px 0;
+                transition: 0.4s;
+                border-radius: 10px;
+            }
+
+            /* INICIO Tamanho da tela para Menu Sanduiche */
+            @media screen and (max-width: 768px) {
+                .navbar {
+                    display: none;
+                    align-items: normal;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: rgba(62, 163, 163, 0.916);
+                    position: absolute;
+                    top: 74px;
+                    z-index: 999;
+                }
+                .navbar a {
+                    border-bottom: 1px solid gray;
+                }
+                .navbar a:hover {
+                    background-color: rgba(85, 215, 215, 0.916);
+                    border-radius: 0%;
+                }
+                .menu-icon {
+                    display: flex;
+                    margin-left: auto;
+                    padding-right: 15px;
+                }
+                nav {
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            
+            }
+            /*FIM Tamanho da tela para Menu Sanduiche*/
+
+            /*INICIO Servicos*/
+            .titulo-servicos {
+                /* border: 1px solid pink; */
+                font-size: 30px;
+                text-align: center;
+                margin-top: 30px;
+                font-family: "Tommy";
+                color: orange;
+            }
+            
+            .servicos {
+                /* border: 1px solid red; */
+                width: 60vw;
+                margin: auto;
+                margin-top: 20px;
+                text-align: center;
+                padding: 15px;
+                
+            }
+            .servico {
+                /* border: 1px solid green; */
+                background-color: rgb(255, 207, 0);
+                width: 200px;
+                height: 340px;
+                display: inline-block;
+                text-align: center;
+                border-radius: 25px;
+                box-shadow: 3px 5px 10px rgba(0, 0, 0, .2);
+                margin: 10px;
+                transition: all 0.5s;
+
+            }
+            .servico input {
+                margin-top: 8px;
+            }
+            
+            .servico img {
+                width: 200px;
+                height: 300px;
+                border-top-left-radius: 25px;
+                border-top-right-radius: 25px;
+                cursor: pointer;
+            }
+            .servico:hover {
+                cursor: pointer;
+                transform: scale(1.03);
+            }
+            /*FIM Servicos*/
+            /*INICIO Agendamento*/
+            .agendamento {
+                border: 1px solid orange;
+                background-color: white;
+                width: 25vw;
+                margin: auto;
+                display: flex;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                padding: 20px;
+                min-width: 600px;
+                border-radius: 25px;
+            }
+            .agendamento input {
+                margin-bottom: 15px;
+                height: 30px;
+                border-radius: 5px;
+                border: 1px solid rgba(207, 205, 205, 0.39);
+            }
+            .agendamento select {
+                margin-bottom: 15px;
+                height: 30px
+            }
+            .agendamento-botao {
+                color: white;
+                background-color: orange;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-bottom: 10px;
+                padding-top: 7px;
+            }
+            .agendamento-botao:hover {
+                color: white;
+                background-color: rgb(255, 145, 0);
+                box-shadow: 3px 5px 10px rgba(0, 0, 0, .2);
+                
+            }
+            .agendamento-botao:active {
+                position: relative;
+                top: 5px;
+                box-shadow: none;
+            }
+            
+            /*FIM Servicos*/
+
+            /*INICIO FOOTER*/
+            footer {
+                background-color: rgb(255, 146, 1);
+                width: 100%;
+                height: auto;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .footer-colunas {
+                display: inline-block;
+                vertical-align: top;
+                padding: 30px;
+
+            }
+            .footer-li {
+                display: block;
+                line-height: 40px;
+                text-align: left;
+            }
+            .footer-linha-vertical {
+                display: inline-block;
+                height: 100px;
+                width: 20px;
+                border-right: 1px solid rgb(232, 186, 127);
+                margin-top: 40px;
+            }
+            .footer-links {
+                color: white;
+                text-decoration: none;
+                padding: 10px;
+                font-size: small;
+                transition: 0.5s;
+            }
+            .footer-links:hover {
+                color: rgb(142, 82, 3);
+            }
+            /*FIM FOOTER*/
+            
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="img_logo">
+                    <a href="index.html"><img src="icone/icone-pets-co.png"></a>
+                    
+                </div>
+
+                <!--Menu Sanduíche-->
+                <div class="menu-icon" onclick="MostraEscondeMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <!--Fim Menu Sanduíche-->
+
+                <div class="navbar" id="navLinks">
+                    <a href="index.html" class="nav-links">Home</a>
+                    <a href="cadastro.html" class="nav-links">Cadastre-se</a>
+                    <a href="fale_conosco.html" class="nav-links">Fale Conosco</a>
+                    <a href="nossa_historia.html" class="nav-links">Nossa história</a>
+                </div>
+            </nav>
+        </header>
+
+        <!--INICIO Servicos-->
+
+        <div class="titulo-servicos">
+            <h3>Agendamento</h3>
+        </div>
+
+        <div class="servicos">
+            <div class="servico">
+
+                    <label for="idservico1">
+                        <img src="banho-e-tosa/Banho.jpg">
+                    </label>
+            
+                    <input type="radio" name="servico" id="idservico1"> Banho
+                
+            </div>
+
+            <div class="servico">
+                
+                    <label for="idservico2">
+                        <img src="/banho-e-tosa/Banho-tosa.jpg">
+                    </label>
+        
+                    <input type="radio" name="servico" id="idservico2"> Banho & Tosa
+                
+            </div>
+
+            <div class="servico">
+                
+                    <label for="idservico3">
+                        <img src="banho-e-tosa/tosa-higienica.jpg">
+                    </label>
+                
+                    <input type="radio" name="servico" id="idservico3"> Tosa Higiênica
+                
+            </div>
+
+            <div class="servico">
+                
+                    <label for="idservico4">
+                        <img src="banho-e-tosa/veterinario.jpg">
+                    </label>
+                
+                    <input type="radio" name="servico" id="idservico4"> Veterinário
+                
+            </div>
+        </div>
+        <!--FIM Servicos-->
+
+        <!--INICIO Data-->
+        <div class="agendamento">
+            <form>
+                <input type="text" name="nomepet" id="idnomepet" size="80" placeholder="  Nome do Pet">
+                <br>
+                <input type="text" name="nometutor" id="idnometutor" size="80" placeholder="  Nome do Tutor">
+                <br>
+                <label for="idpeso">Peso em Kg</label>
+                <input type="number" name="peso" id="idpeso">
+                <br>
+                <label for="ididade">Idade do Pet</label>
+                <input type="number" name="idade" id="ididade">
+                <br><br>
+                <label for="idlocal">Selecione o local</label>
+                <select name="local" id="idlocal">
+                    <option value=""></option>
+                    <option value="end1">Av. Brig. Eduardo Gomes</option>
+                    <option value="end2">Av. das Esmeraldas</option>
+                    <option value="end3">R. Nove de Julho</option>
+                    <option value="end4">R. Pedro de Toledo</option>
+                </select>
+                <br>
+                <label for="iddata">Selecione a data do agendamento</label>
+                <input type="date" id="iddata">
+                <br>
+                <label for="idhora">Selecione o horário</label>
+                <select name="hora" id="idhora">
+                    <option value="hora1">9:00</option>
+                    <option value="hora2">10:00</option>
+                    <option value="hora3">11:00</option>
+                    <option value="hora4">13:00</option>
+                    <option value="hora5">14:00</option>
+                    <option value="hora6">15:00</option>
+                    <option value="hora7">16:00</option>
+                    <option value="hora8">17:00</option>
+                </select>
+                <br><br>
+                <input type="submit" value="AGENDAR" class="agendamento-botao">
+            
+            </form>
+        </div>
+        <!--FIM Data-->
+
+        <!--INICIO Footer-->
+        <footer>
+            <div class="footer-colunas">
+                <ul>
+                    <li class="footer-li"><a href="fale_conosco.html" class="footer-links">Fale Conosco</a></li>
+                    <li class="footer-li"><a href="cadastro.html" class="footer-links">Cadastro</a></li>
+                    <li class="footer-li"><a href="nossa_historia.html" class="footer-links">Nossa História</a></li>
+                </ul>
+            </div>
+            <div class="footer-linha-vertical"></div>
+            <div class="footer-colunas">
+                <ul>
+                    <li class="footer-li"><a href="racao.html" class="footer-links">Rações</a></li>
+                    <li class="footer-li"><a href="banhoetosa.html" class="footer-links">Agendamento</a></li>
+                </ul>
+            </div>
+
+        </footer>
+        <!--FIM Footer-->
+        
+        <script>
+            function MostraEscondeMenu() {
+                var nav = document.getElementById("navLinks");
+                if (nav.style.display === "flex") {
+                    nav.style.display = "none";
+                } else {
+                    nav.style.display = "flex"
+                }
+            }
+        </script>
+    </body>
+</html>
