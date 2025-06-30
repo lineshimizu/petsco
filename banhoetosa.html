@@ -161,13 +161,12 @@
             .agendamento {
                 border: 1px solid orange;
                 background-color: white;
-                width: 25vw;
+                width: 500px;
                 margin: auto;
                 display: flex;
                 margin-top: 20px;
                 margin-bottom: 20px;
                 padding: 20px;
-                min-width: 600px;
                 border-radius: 25px;
             }
             .agendamento input {
@@ -198,6 +197,21 @@
                 position: relative;
                 top: 5px;
                 box-shadow: none;
+            }
+            .agendamento-size {
+                width: 500px;
+            }
+
+            @media (max-width: 769px) {
+                .agendamento {
+                    flex-direction: column;
+                    align-items: stretch;
+                    width: 85vw;
+                }
+                .agendamento-size {
+                    width: 85vw;
+                }
+
             }
             
             /*FIM Servicos*/
@@ -320,9 +334,9 @@
         <!--INICIO Data-->
         <div class="agendamento">
             <form>
-                <input type="text" name="nomepet" id="idnomepet" size="80" placeholder="  Nome do Pet">
+                <input type="text" name="nomepet" id="idnomepet" placeholder="  Nome do Pet" class="agendamento-size">
                 <br>
-                <input type="text" name="nometutor" id="idnometutor" size="80" placeholder="  Nome do Tutor">
+                <input type="text" name="nometutor" id="idnometutor" placeholder="  Nome do Tutor" class="agendamento-size">
                 <br>
                 <label for="idpeso">Peso em Kg</label>
                 <input type="number" name="peso" id="idpeso">
